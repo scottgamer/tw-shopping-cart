@@ -22,9 +22,7 @@ app.get('/products/:code', (req, res) =>
 );
 
 app.get('/products', (req, res) => {
-  const mappedProds = products.map(x => x.productCode);
-  console.log(mappedProds);
-  res.json(mappedProds);
+  res.json(products.map(x => x.productCode));
 });
 
 app.post('/checkout', (req, res) => {
