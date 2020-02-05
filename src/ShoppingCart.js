@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
 * Calculates total price and total loyalty points earned by the customer.
@@ -10,20 +10,21 @@
     - Customer earns 1 point on every $15 spent on a product with 15% discount.
 */
 module.exports = function(items) {
-
   function checkout() {
-    var totalPrice = 0;
-    var loyaltyPoints = 0;
-    items.forEach(function(item) {
-      var discount = 0;
-      if(item.productCode.startsWith("DIS_10")){
+    let totalPrice = 0;
+    let loyaltyPoints = 0;
+
+    items.forEach(item => {
+      let discount = 0;
+
+      if (item.productCode.startsWith('DIS_10')) {
         discount = item.price * 0.1;
-        loyaltyPoints += (item.price / 10);
-      } else if(item.productCode.startsWith("DIS_15")){
+        loyaltyPoints += item.price / 10;
+      } else if (item.productCode.startsWith('DIS_15')) {
         discount = item.price * 0.15;
-        loyaltyPoints += (item.price / 15);
+        loyaltyPoints += item.price / 15;
       } else {
-        loyaltyPoints += (item.price / 5);
+        loyaltyPoints += item.price / 5;
       }
       totalPrice += item.price - discount;
     });
@@ -32,5 +33,5 @@ module.exports = function(items) {
 
   return {
     checkout: checkout
-  }
-}
+  };
+};
