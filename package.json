@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/jasmine",
-    "start": "node src/index.js"
+    "start": "nodemon src/index.js"
   },
   "author": "Thoughtworks",
   "license": "ISC",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "nodemon": "^2.0.2"
   }
 }
