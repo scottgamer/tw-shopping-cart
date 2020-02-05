@@ -43,5 +43,10 @@
 		"price": 99.99,
 		"productCode": "BOARD_CHAIR",
 		"name": "Boardroom chair"	
+	},
+	{
+		"price": 99.99,
+		"productCode": "DIS_20-BOARD_CHAIR",
+		"name": "Boardroom chair"	
 	}
 ]            
