@@ -18,7 +18,7 @@ const products = require('./data/products.json');
 const ShoppingCart = require('./ShoppingCart.js');
 
 app.get('/products/:code', (req, res) =>
-  res.json(products.find(x => x.code === req.params.code))
+  res.json(products.find(x => x.productCode === req.params.code))
 );
 
 app.get('/products', (req, res) => {
