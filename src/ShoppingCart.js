@@ -13,24 +13,35 @@ module.exports = function(items) {
   function checkout() {
     let totalPrice = 0;
     let loyaltyPoints = 0;
+    let bulkProductsWithOffer = [];
 
     items.forEach(item => {
       let discount = 0;
+      const tempItem = { ...item };
 
-      if (item.productCode.startsWith('DIS_10')) {
-        discount = item.price * 0.1;
-        loyaltyPoints += item.price / 10;
-      } else if (item.productCode.startsWith('DIS_15')) {
-        discount = item.price * 0.15;
-        loyaltyPoints += item.price / 15;
-      } else if (item.productCode.startsWith('DIS_20')) {
-        discount = item.price * 0.2;
-        loyaltyPoints += item.price / 20;
+      // Two products with same promo code
+      if (
+        tempItem.productCode.startsWith('BULK_BUY_2_GET_1') &&
+        bulkProductsWithOffer.length >= 1
+      ) {
+        tempItem.price = 0;
+        bulkProductsWithOffer = [];
+      } else if (tempItem.productCode.startsWith('BULK_BUY_2_GET_1')) {
+        bulkProductsWithOffer.push(tempItem);
+      } else if (tempItem.productCode.startsWith('DIS_10')) {
+        discount = tempItem.price * 0.1;
+        loyaltyPoints += tempItem.price / 10;
+      } else if (tempItem.productCode.startsWith('DIS_15')) {
+        discount = tempItem.price * 0.15;
+        loyaltyPoints += tempItem.price / 15;
+      } else if (tempItem.productCode.startsWith('DIS_20')) {
+        discount = tempItem.price * 0.2;
+        loyaltyPoints += tempItem.price / 20;
       } else {
-        loyaltyPoints += item.price / 5;
+        loyaltyPoints += tempItem.price / 5;
       }
 
-      totalPrice += item.price - discount;
+      totalPrice += tempItem.price - discount;
 
       if (totalPrice >= 500) {
         discount = totalPrice * 0.05;
